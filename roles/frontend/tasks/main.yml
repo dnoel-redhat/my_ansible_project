@@ -1,18 +1,18 @@
 ---
 # tasks file for frontend
-- name: install apache package
+- name: install "{{ package }}" package
   yum:
-    name: httpd
+    name: "{{ package }}"
     state: latest
 
-- name: install HAProxy package
+- name: install "{{ h_package }}" package
   yum:
-    name: haproxy
+    name: "{{ h_package }}"
     state: latest
 
-- name: start and enable HAProxy daemon
+- name: start and enable "{{ h_package }}" daemon
   service:
-    name: haproxy
+    name: "{{ h_package }}"
     state: started
     enabled: true
 

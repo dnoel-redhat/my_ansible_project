@@ -1,2 +1,4 @@
 ---
 # vars file for app-servers
+package: tomcat
+h_package: httpd

@@ -17,22 +17,18 @@
   gather_facts: false
   become: true
 
-#  tasks:
-#  - name: configure app servers
 
   roles:
-    - app-servers
+    - {name: app-servers, tags: apps}
 
 - name: configure db server
   hosts: appdbs
   gather_facts: false
   become: true
 
-#  tasks:
-#  - name: configure db
 
   roles:
-    - db-server
+    - {name: db-server, tags: dbs}
 
 - name: configure frontends
   hosts: frontends
@@ -40,5 +36,5 @@
   become: true
   
   roles:
-    - frontend
+    - {name: frontend, tags: frontends}
 

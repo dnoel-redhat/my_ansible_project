@@ -16,7 +16,7 @@
 
 - name: start and enable postgres
   service:
-    name: postgresql
+    name: "{{ package }}"
     enabled: true
     state: started
 
