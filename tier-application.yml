@@ -1,0 +1,44 @@
+# This playbook installs the 3 tier application by using roles
+- name: Enable repositories on all servers
+  hosts: all
+  gather_facts: false
+  become: true
+
+
+  tasks:
+  - name: enable repositories
+    template:
+      src: open_three-tier-app.repo
+      dest: /etc/yum.repos.d/open_three-tier-app.repo
+      mode: 0644
+
+- name: configure the App Servers
+  hosts: apps
+  gather_facts: false
+  become: true
+
+#  tasks:
+#  - name: configure app servers
+
+  roles:
+    - app-servers
+
+- name: configure db server
+  hosts: appdbs
+  gather_facts: false
+  become: true
+
+#  tasks:
+#  - name: configure db
+
+  roles:
+    - db-server
+
+- name: configure frontends
+  hosts: frontends
+  gather_facts: false
+  become: true
+  
+  roles:
+    - frontend
+
