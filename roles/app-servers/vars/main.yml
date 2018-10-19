@@ -2,3 +2,4 @@
 # vars file for app-servers
 package: tomcat
 h_package: httpd
+tomcat_index: /usr/share/tomcat/webapps/ansible/index.html 

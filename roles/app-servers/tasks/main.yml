@@ -28,13 +28,13 @@
 - name: copy index.html file to app1.d712.internal tomcat
   template:
     src: index.html.app1
-    dest: "/usr/share/{{ package }}/webapps/ansible/index.html"
+    dest: "{{ tomcat_index }}"
   when: inventory_hostname == "app1.d712.internal" 
 
 - name: copy index.html file to app2.d712.internal tomcat
   template:
     src: index.html.app2
-    dest: "/usr/share/{{ package }}/webapps/ansible/index.html"
+    dest: "{{ tomcat_index }}" 
   when: inventory_hostname == "app2.d712.internal"
 
 - name: install "{{ h_package }}" package

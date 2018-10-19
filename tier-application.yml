@@ -23,12 +23,13 @@
 
 - name: configure db server
   hosts: appdbs
-  gather_facts: false
+  #gather_facts: false
   become: true
 
 
   roles:
-    - {name: db-server, tags: dbs}
+  #  - {name: db-server, tags: dbs}
+    - {name: geerlingguy.postgresql, tags: db}
 
 - name: configure frontends
   hosts: frontends
