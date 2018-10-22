@@ -1,28 +1,28 @@
 ---
 # tasks file for app-servers
-- name: install "{{ package }}" package
+- name: install "{{ tomcat_package }}" 
   yum:
-    name: "{{ package }}"
+    name: "{{ tomcat_package }}"
     state: latest
 
-- name: start and enable "{{ package }}"
+- name: start and enable "{{ tomcat_package }}"
   service:
-    name: "{{ package }}"
+    name: "{{ tomcat_package }}"
     enabled: true
     state: started
 
-- name: create "{{ package }}" directory
+- name: create "{{ tomcat_package }}" directory
   file:
-    path: "/usr/share/{{ package }}/webapps/{{ item }}"
+    path: "{{ tomcat_directory }}/{{ item }}"
     state: directory
-  with_items:
+  loop:
     - ROOT
     - ansible
 
-- name: copy static index.html to "{{ package }}" webapps/ansible/index.html
+- name: copy static index.html to "{{ tomcat_package }}" webapps/ansible/index.html
   template:
     src: index.html.j2
-    dest: "/usr/share/{{ package }}/webapps/ROOT/index.html"
+    dest: "{{ tomcat_directory }}/ROOT/index.html"
     mode: 0644
 
 - name: copy index.html file to app1.d712.internal tomcat
@@ -37,13 +37,13 @@
     dest: "{{ tomcat_index }}" 
   when: inventory_hostname == "app2.d712.internal"
 
-- name: install "{{ h_package }}" package
+- name: install "{{ apache_package }}"
   yum:
-    name: "{{ h_package }}"
+    name: "{{ apache_package }}"
     state: latest
 
-- name: start and enable "{{ h_package }}"
+- name: start and enable "{{ apache_package }}"
   service:
-    name: "{{ h_package }}"
+    name: "{{ apache_package }}"
     enabled: true
     state: started

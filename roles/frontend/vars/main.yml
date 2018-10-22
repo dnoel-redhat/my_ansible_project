@@ -1,4 +1,4 @@
 ---
 # vars file for frontend
-package: httpd
-h_package: haproxy
+apache_package: httpd
+haproxy_package: haproxy
