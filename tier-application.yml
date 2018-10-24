@@ -35,9 +35,10 @@
 
 - name: configure frontends
   hosts: frontends
-  gather_facts: false
+  #gather_facts: false
   become: true
   
   roles:
     - {name: frontend, tags: frontends}
+ #   - {name: geerlingguy.haproxy, tags: frontends}
 
