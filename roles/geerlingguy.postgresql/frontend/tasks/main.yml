@@ -1,0 +1,24 @@
+---
+# tasks file for frontend
+- name: install "{{ apache_package }}" package
+  yum:
+    name: "{{ apache_package }}"
+    state: latest
+
+- name: install "{{ haproxy_package }}" package
+  yum:
+    name: "{{ haproxy_package }}"
+    state: latest
+
+- name: start and enable "{{ haproxy_package }}" daemon
+  service:
+    name: "{{ haproxy_package }}"
+    state: started
+    enabled: true
+
+- name: template out HAProxy configuration file
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+  notify:
+    - restart haproxy

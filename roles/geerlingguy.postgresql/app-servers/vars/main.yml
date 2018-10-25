@@ -1,0 +1,6 @@
+---
+# vars file for app-servers
+tomcat_package: tomcat
+apache_package: httpd
+tomcat_index: /usr/share/tomcat/webapps/ansible/index.html
+tomcat_directory: /usr/share/tomcat/webapps/ 

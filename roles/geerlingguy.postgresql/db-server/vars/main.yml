@@ -1,0 +1,3 @@
+---
+# vars file for db-server
+db_package: postgresql
